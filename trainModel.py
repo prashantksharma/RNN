@@ -1,7 +1,7 @@
 import model
 import criterion
-from model import *
-from criterion import *
+#from model import *
+#from criterion import *
 import torch 
 import torch.utils.data
 from random import sample
@@ -15,13 +15,16 @@ print("Loading data and labels\n")
 data_raw = open('train_data.txt', 'r').readlines() # should be simple plain text file
 data_raw_test = open('test_data.txt', 'r').readlines() # should be simple plain text file
 data_test = [j.split() for j in data_raw_test]
-unique_test = list(set(list(itertools.chain.from_iterable(data_test))))
+
 
 ''' getting number of sentences'''
 data = [i.split() for i in data_raw]
+
+unique = list(set(list(itertools.chain.from_iterable(data_test)) + list(itertools.chain.from_iterable(data))))
+
 label_raw = open('train_labels.txt', 'r').read().split()
 l = [len(i) for i in data]
-unique = list(set(list(itertools.chain.from_iterable(data))))
+
 data_size, vocab_size = len(data), len(unique)
 labels = [int(label) for label in label_raw]
 ''' in case of one hot representation
@@ -33,12 +36,11 @@ d=list(char_to_ix.keys())
 
 def onehot(number):
 	
-	oh = np.zeros(len(unique))
-	c=[number==i for i in d]
-	if (any(c)):
-	    index = char_to_ix[number]
-	    oh[index]=1
-	return oh
+    oh = np.zeros(len(unique))
+    index = char_to_ix[number]
+    oh[index]=1
+    
+    return oh
 
 def in_to_onehot(input):
 	l=[]
