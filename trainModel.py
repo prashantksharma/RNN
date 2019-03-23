@@ -56,7 +56,7 @@ def app(input_vector,zero_extension):
 no_layers = 20
 hidden_dim = 5
 learn_rate = 0.01
-epoch = 120
+epoch = 70
 batch_size = 16
 #vocab_size = 149
 
