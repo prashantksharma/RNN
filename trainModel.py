@@ -1,7 +1,7 @@
 import model
 import criterion
-#from model import *
-#from criterion import *
+from model import *
+from criterion import *
 import torch 
 import torch.utils.data
 from random import sample
@@ -64,21 +64,11 @@ batch_size = 16
 #criterion = criterion()
 input = [in_to_onehot(d) for d in data]
 loss = 0
-#temp = [app(i,2720-len(i)) for i in input]
-temp = [app(i,no_layers-abs(len(i)-no_layers)%no_layers) if len(i)-no_layers>0 else app(i,abs(len(i)-no_layers)%no_layers) for i in input]
-
-x = []
-y = []
-for i in range(len(data_raw)):
-	l_seq = len(input[i])
-	c = np.arange(0,l_seq,no_layers)
-	for j in c:
-		x.append(input[j:j+no_layers])
-		y.append(labels[i])
+temp = [app(i,2720-len(i)) for i in input]
 
 in_test = [in_to_onehot(d_test) for d_test in data_test]
-data = torch.tensor(x)
-labels = y
+data = torch.tensor(input)
+
 ####################################################
 #else:
 
@@ -92,6 +82,8 @@ labels = y
 #	batch_size = 16
 #	vocab_size = 149
 #	data = torch.load('train_tensor.txt').double()
+
+
 
 hprev = torch.zeros(batch_size,hidden_dim).double()
 model_0 = model(no_layers,hidden_dim,batch_size,vocab_size,True)
