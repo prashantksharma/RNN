@@ -27,17 +27,17 @@ def get_unique():
 
 # #if(True):
 # # data I/O
-# data_raw = open('train_data.txt', 'r').readlines() # should be simple plain text file
-# data_raw_test = open('test_data.txt', 'r').readlines() # should be simple plain text file
-# data_test = [j.split() for j in data_raw_test]
+data_raw = open('train_data.txt', 'r').readlines() # should be simple plain text file
+data_raw_test = open('test_data.txt', 'r').readlines() # should be simple plain text file
+data_test = [j.split() for j in data_raw_test]
 
 
 # ''' getting number of sentences'''
-# data = [i.split() for i in data_raw]
+data = [i.split() for i in data_raw]
 
-# unique = list(set(list(itertools.chain.from_iterable(data_test)) + list(itertools.chain.from_iterable(data))))
+unique = list(set(list(itertools.chain.from_iterable(data_test)) + list(itertools.chain.from_iterable(data))))
 
-# print("no. of unique words: ",len(unique))
+print("no. of unique words: ",len(unique))
 
 # label_raw = open('train_labels.txt', 'r').read().split()
 # l = [len(i) for i in data]
@@ -47,7 +47,10 @@ def get_unique():
 # ''' in case of one hot representation
 # number of words in vocab will decide the dimension of the one hot vector '''
 
-unique = get_unique()
+# unique = get_unique()
+
+print(unique)
+# print("no. of unique words: ",len(unique))
 
 char_to_ix = { ch:i for i,ch in enumerate(unique) }
 ix_to_char = { i:ch for i,ch in enumerate(unique) }
@@ -80,7 +83,7 @@ model_0 = torch.load("model1.bin")
 hidden_dim = 6
 
 
-file = open('test_max_pred.csv','w')
+file = open('test_max_pred1.csv','w')
 for i in range(len(data_raw_test)):
     
     input_vect = torch.tensor(in_test[i])
