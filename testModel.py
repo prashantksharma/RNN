@@ -9,30 +9,39 @@ import numpy as np
 import itertools
 import argparse
 
+def get_unique():
+    dict_data = open("dict.txt",'r').readlines()
+    dict_data_list = [dict_data.split() for j in dict_data]
+
+    unique = list(set(list(itertools.chain.from_iterable(dict_data_list))))
+    return unique
+
 ##################################################
-print("Loading data and labels\n")
+# print("Loading data and labels\n")
 
-#if(True):
-# data I/O
-data_raw = open('train_data.txt', 'r').readlines() # should be simple plain text file
-data_raw_test = open('test_data.txt', 'r').readlines() # should be simple plain text file
-data_test = [j.split() for j in data_raw_test]
+# #if(True):
+# # data I/O
+# data_raw = open('train_data.txt', 'r').readlines() # should be simple plain text file
+# data_raw_test = open('test_data.txt', 'r').readlines() # should be simple plain text file
+# data_test = [j.split() for j in data_raw_test]
 
 
-''' getting number of sentences'''
-data = [i.split() for i in data_raw]
+# ''' getting number of sentences'''
+# data = [i.split() for i in data_raw]
 
-unique = list(set(list(itertools.chain.from_iterable(data_test)) + list(itertools.chain.from_iterable(data))))
+# unique = list(set(list(itertools.chain.from_iterable(data_test)) + list(itertools.chain.from_iterable(data))))
 
-print("no. of unique words: ",len(unique))
+# print("no. of unique words: ",len(unique))
 
-label_raw = open('train_labels.txt', 'r').read().split()
-l = [len(i) for i in data]
+# label_raw = open('train_labels.txt', 'r').read().split()
+# l = [len(i) for i in data]
 
-data_size, vocab_size = len(data), len(unique)
-labels = [int(label) for label in label_raw]
-''' in case of one hot representation
-number of words in vocab will decide the dimension of the one hot vector '''
+# data_size, vocab_size = len(data), len(unique)
+# labels = [int(label) for label in label_raw]
+# ''' in case of one hot representation
+# number of words in vocab will decide the dimension of the one hot vector '''
+
+unique = get_unique()
 
 char_to_ix = { ch:i for i,ch in enumerate(unique) }
 ix_to_char = { i:ch for i,ch in enumerate(unique) }
@@ -52,7 +61,7 @@ def in_to_onehot(input):
 	    l.append(onehot(i))
 	return l
 	
-zero_vector = np.zeros(len(unique))
+# zero_vector = np.zeros(len(unique))
 
 
 in_test = [in_to_onehot(d_test) for d_test in data_test]
