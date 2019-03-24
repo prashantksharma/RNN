@@ -115,7 +115,7 @@ torch.save(model_0,'model2.bin')
 
 print("\nTesting started ..............\n")
 
-file = open('test.csv','w')
+file = open('test_max.csv','w')
 for i in range(len(data_raw_test)):
     
     input_vect = torch.tensor(in_test[i])
