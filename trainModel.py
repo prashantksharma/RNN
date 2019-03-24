@@ -1,7 +1,7 @@
 import model
 import criterion
-#from model import *
-#from criterion import *
+from model import *
+from criterion import *
 import torch 
 import torch.utils.data
 from random import sample
@@ -56,9 +56,9 @@ def app(input_vector,zero_extension):
 	    input_vector.append(zero_vector)
 
 no_layers = 20
-hidden_dim = 5
+hidden_dim = 68
 learn_rate = 0.01
-epoch = 120
+epoch = 10
 batch_size = 16
 #vocab_size = 149
 
@@ -111,7 +111,7 @@ for e in range(epoch):
     print("Epoch:"+str(e)+" avg_Training_loss: "+str(avg_epoch_loss/len(min_batch)))
 
 
-torch.save(model_0,'model1.bin')
+torch.save(model_0,'model2.bin')
 
 print("\nTesting started ..............\n")
 
