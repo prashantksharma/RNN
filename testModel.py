@@ -11,9 +11,15 @@ import argparse
 
 def get_unique():
     dict_data = open("dict.txt",'r').readlines()
-    dict_data_list = [dict_data.split() for j in dict_data]
+    # dict_data_list = [dict_data.split() for j in dict_data]
 
-    unique = list(set(list(itertools.chain.from_iterable(dict_data_list))))
+    # unique = list(set(list(itertools.chain.from_iterable(dict_data_list))))
+    unique = []
+    tot = 153
+    for u in range(tot):
+        v = dict_data[u].split()[0]
+        unique.append(v)
+
     return unique
 
 ##################################################
