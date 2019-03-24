@@ -22,6 +22,8 @@ data = [i.split() for i in data_raw]
 
 unique = list(set(list(itertools.chain.from_iterable(data_test)) + list(itertools.chain.from_iterable(data))))
 
+print("no. of unique words: ",len(unique))
+
 label_raw = open('train_labels.txt', 'r').read().split()
 l = [len(i) for i in data]
 
