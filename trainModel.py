@@ -56,9 +56,9 @@ def app(input_vector,zero_extension):
 	    input_vector.append(zero_vector)
 
 no_layers = 20
-hidden_dim = 68
+hidden_dim = 6
 learn_rate = 0.01
-epoch = 10
+epoch = 120
 batch_size = 16
 #vocab_size = 149
 
